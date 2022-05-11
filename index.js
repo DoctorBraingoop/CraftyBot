@@ -7,5 +7,5 @@ const bot = new Client({
     intents: ["GUILDS", "GUILD_MESSAGES"]
 })
 bot.on("ready", () => {
-    `Client logged in`
+   console.log(); `Client logged in`
 })
