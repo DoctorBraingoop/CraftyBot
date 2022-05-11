@@ -9,3 +9,4 @@ const bot = new Client({
 bot.on("ready", () => {
    console.log(`Client logged in`); 
 })
+client.lo
