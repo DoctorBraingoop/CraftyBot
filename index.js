@@ -6,3 +6,4 @@ const { token } = require("./config.json")
 const bot = new Client({
     intents: ["GUILDS", "GUILD_MESSAGES"]
 })
+bot.on()
