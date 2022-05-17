@@ -27,7 +27,7 @@ for (const file of commandFiles) {
 bot.on("ready", () => {
   console.log(`
 ${bot.user.id} logged in
-Node version: ${process.versions.node}
+Running Node version: ${process.versions.node}
   `);
 });
 bot.on("guildMemberAdd", async (member) => {
@@ -46,8 +46,6 @@ bot.on("messageCreate", (msg) => {
     case "ping":
       bot.commands.get("ping").execute(msg, args);
   }
-
-  console.log(args);
 });
 
 bot.login(token);
