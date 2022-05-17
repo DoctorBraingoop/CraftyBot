@@ -1,5 +1,5 @@
-const { Client, Collection, Intents } = require("discord.js"); // require the necessary discord.js classes
 const { token } = require("./config.json"); // require bot token
+const { Client, Collection, Intents } = require("discord.js"); 
 const fs = require("fs");
 const path = require("node:path");
 
