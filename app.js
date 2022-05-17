@@ -55,6 +55,3 @@ bot.on("messageCreate", (msg) => {
 });
 
 bot.login(token);
-
-//mdn String.slice
-//mdn Array.shift
