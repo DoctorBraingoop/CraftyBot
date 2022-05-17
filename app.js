@@ -17,11 +17,9 @@ const commandFiles = fs
   .filter((file) => file.endsWith(".js"));
 
 // ! require command files
-let commandNames;
 for (const file of commandFiles) {
   const filePath = path.join(commandPath, file);
-  commandNames = require(filePath);
-  // console.log(commandNames.name);
+  const commandNames = require(filePath);
   bot.commands.set(commandNames.name, commandNames);
 }
 // ! events
