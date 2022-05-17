@@ -21,7 +21,7 @@ let commandNames;
 for (const file of commandFiles) {
   const filePath = path.join(commandPath, file);
   commandNames = require(filePath);
-  console.log(commandNames);
+  // console.log(commandNames.name);
   bot.commands.set(commandNames.name, commandNames);
 }
 // ! events
