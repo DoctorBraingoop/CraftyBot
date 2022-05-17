@@ -1,6 +1,5 @@
-// require the necessary discord.js classes
-const { Client, Collection, Intents } = require("discord.js");
-const { token } = require("./config.json");
+const { Client, Collection, Intents } = require("discord.js"); // require the necessary discord.js classes
+const { token } = require("./config.json"); // require bot token
 const fs = require("fs");
 const path = require("node:path");
 
@@ -18,12 +17,13 @@ const commandFiles = fs
   .filter((file) => file.endsWith(".js"));
 
 // ! require command files
+let commandNames;
 for (const file of commandFiles) {
   const filePath = path.join(commandPath, file);
-  const command = require(filePath);
-  bot.commands.set(command.name, command);
+  commandNames = require(filePath);
+  console.log(commandNames);
+  bot.commands.set(commandNames.name, commandNames);
 }
-
 // ! events
 // bot is ready
 bot.on("ready", () => {
@@ -47,6 +47,8 @@ bot.on("messageCreate", (msg) => {
   const args = msg.content.slice(prefix.length).split(/ +/);
   if (!args[0]) return;
   const command = args.shift().toLowerCase();
+  console.log("\r\nCommand captured:", command);
+  console.log("Arguments:", args);
 
   switch (command) {
     case "ping":
