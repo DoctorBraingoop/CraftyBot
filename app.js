@@ -6,16 +6,22 @@ const path = require("node:path");
 
 const $prefix = "$";
 
+// ! create a new client instance
+const bot = new Client({
+  intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"],
+});
+
+bot.commands = new Collection();
 const commandsPath = path.join(__dirname, "commands");
 const commandFiles = fs
   .readdirSync(commandsPath)
   .filter((file) => file.endsWith(".js"));
 
-// ! create a new client instance
-const bot = new Client({
-  intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"],
-});
-bot.commands = new Collection();
+for (const file of commandFiles) {
+  const filePath = path.join(commandsPath, file);
+  const command = require(filePath);
+  bot.commands.set(command.name, command);
+}
 
 // ! events
 bot.on("ready", () => {
@@ -23,13 +29,6 @@ bot.on("ready", () => {
 ${bot.user.id} logged in
 Node version: ${process.versions.node}
   `);
-  console.log("Command files:");
-  for (const file of commandFiles) {
-    const filePath = path.join(commandsPath, file);
-    const command = require(filePath);
-    console.log(filePath);
-    bot.commands.set(command.name, command);
-  }
 });
 bot.on("guildMemberAdd", async (member) => {
   const channel = client.channel.cache.get("964967586813059132");
@@ -45,7 +44,7 @@ bot.on("messageCreate", (msg) => {
 
   switch (command) {
     case "ping":
-      bot.commands.get("ping").execute(msg,args);
+      bot.commands.get("ping").execute(msg, args);
   }
 
   console.log(args);
