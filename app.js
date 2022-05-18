@@ -9,7 +9,7 @@ const bot = new Client({
 });
 bot.commands = new Collection();
 
-const prefix = "$";
+const prefix = "$"; 
 
 const commandPath = path.join(__dirname, "commands");
 const commandFiles = fs
