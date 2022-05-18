@@ -24,7 +24,7 @@ for (const file of commandFiles) {
 }
 // ! events
 // bot is ready
-bot.on("ready", () => {
+bot.once("ready", () => {
   console.log(`
 ${bot.user.id} logged in
 Running Node version: ${process.versions.node}
@@ -45,8 +45,8 @@ bot.on("messageCreate", (msg) => {
   const args = msg.content.slice(prefix.length).split(/ +/);
   if (!args[0]) return;
   const command = args.shift().toLowerCase();
-  console.log("\r\nCommand captured:", command);
-  console.log("Arguments:", args);
+  // console.log("\r\nCommand captured:", command);
+  // console.log("Arguments:", args);
 
   switch (command) {
     case "ping":
