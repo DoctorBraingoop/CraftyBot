@@ -7,7 +7,7 @@ const path = require("node:path");
 const bot = new Client({
   intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"],
 });
-bot.commands = new Collection();
+bot.commands = new Collection(); 
 
 const prefix = "$";
 
