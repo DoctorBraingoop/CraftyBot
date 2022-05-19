@@ -1,5 +1,5 @@
 const { token } = require("./config.json"); // require bot token
-const { Client, Collection, Intents } = require("discord.js"); 
+const { Client, Collection } = require("discord.js");
 const fs = require("fs");
 const path = require("node:path");
 
@@ -7,7 +7,7 @@ const path = require("node:path");
 const bot = new Client({
   intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"],
 });
-bot.commands = new Collection(); 
+bot.commands = new Collection();
 
 const prefix = "$";
 
@@ -31,13 +31,7 @@ Running Node version: ${process.versions.node}
   `);
 });
 
-// member joined guild
-bot.on("guildMemberAdd", async (member) => {
-  const channel = client.channel.cache.get("964967586813059132");
-  if (!channel) return;
-  const embed = new Discord.MessageEmbed().setTitle(`Member Joined`);
-  channel.send(embed);
-});
+// ! const welcomeEmbed = require("./callbacks/welcomeEmbed.js");
 
 // message create
 bot.on("messageCreate", (msg) => {
