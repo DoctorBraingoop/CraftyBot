@@ -1,6 +1,6 @@
 ## Resources
 
-* [Introduction to Nodejs]https://nodejs.dev/learn
+* [Introduction to Nodejs](https://nodejs.dev/learn)
 
 * [Discord.js Guide](https://discordjs.guide/)
 * [Discord.js Documentation](https://discord.js.org/#/docs/main/stable/general/welcome)
