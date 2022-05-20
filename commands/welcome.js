@@ -3,10 +3,7 @@ const channelID = "972328591704596520";
 // const { MessageEmbed } = require("discord.js");
 
 let embedEnabled = true;
-while (embedEnabled) {
-    !embedEnabled
-    console.log(embedEnabled);
-}
+
 const embed = {
   color: embedEnabled ? 0x00ff99 : 0xff3333,
   description: embedEnabled
