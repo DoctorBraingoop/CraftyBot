@@ -1,4 +1,4 @@
-const { token } = require("./config.json"); // require bot token
+// const { token } = require("./config.json"); 
 const { Client, Collection } = require("discord.js");
 const fs = require("fs");
 const path = require("node:path");
@@ -53,4 +53,4 @@ bot.on("messageCreate", (msg) => {
   }
 });
 
-bot.login(token);
+bot.login(process.env.token);
