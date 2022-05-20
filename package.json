@@ -11,6 +11,7 @@
   "author": "braingoop",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^13.6.0"
+    "discord.js": "^13.6.0",
+    "express": "^4.18.1"
   }
 }
