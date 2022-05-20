@@ -8,6 +8,7 @@ const bot = new Client({
   intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"],
 });
 bot.commands = new Collection();
+module.exports = { bot };
 
 const prefix = "$";
 
@@ -22,6 +23,9 @@ for (const file of commandFiles) {
   const commandNames = require(filePath);
   bot.commands.set(commandNames.name, commandNames);
 }
+
+const welcomeEmbed = require("./callbacks/greetEmbed.js");
+
 // ! events
 // bot is ready
 bot.once("ready", () => {
@@ -30,8 +34,6 @@ ${bot.user.id} logged in
 Running Node version: ${process.versions.node}
   `);
 });
-
-// ! const welcomeEmbed = require("./callbacks/welcomeEmbed.js");
 
 // message create
 bot.on("messageCreate", (msg) => {
@@ -45,6 +47,9 @@ bot.on("messageCreate", (msg) => {
   switch (command) {
     case "ping":
       bot.commands.get("ping").execute(msg, args);
+      break;
+    case "welcome":
+      bot.commands.get("welcome").execute(msg, args);
   }
 });
 
