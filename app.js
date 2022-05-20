@@ -3,14 +3,16 @@ const { Client, Collection } = require("discord.js");
 const express = require("express");
 const fs = require("fs");
 const path = require("node:path");
-const port = process.env.PORT || 3333;
+
+const PORT = process.env.PORT || 3333;
 const app = express();
 app.get("/", (req, res) => {
-  res.send("Online");
+  res.send("Server is running");
 });
-app.listen(port, (req, res) => {
-  console.log("Online on port: " + process.env.PORT);
+app.listen(PORT, (req, res) => {
+  console.log("Online on port: " + PORT);
 });
+
 // ! create a new client instance
 const bot = new Client({
   intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"],
