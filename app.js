@@ -1,17 +1,20 @@
-// const { token } = require("./config.json");
+require("dotenv").config();
 const { Client, Collection } = require("discord.js");
 const express = require("express");
 const fs = require("fs");
 const path = require("node:path");
 
-const PORT = process.env.PORT || 3333;
+//------------------------------------
+// put in new file
+const port = process.env.PORT || 3333;
 const app = express();
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
-app.listen(PORT, (req, res) => {
-  console.log("Online on port: " + PORT);
+app.listen(port, (req, res) => {
+  console.log("Express server is online on port: " + port);
 });
+//------------------------------------
 
 // ! create a new client instance
 const bot = new Client({
@@ -34,8 +37,6 @@ for (const file of commandFiles) {
   bot.commands.set(commandNames.name, commandNames);
 }
 
-const welcomeEmbed = require("./callbacks/greetEmbed.js");
-
 // ! events
 // bot is ready
 bot.once("ready", () => {
@@ -51,15 +52,17 @@ bot.on("messageCreate", (msg) => {
   const args = msg.content.slice(prefix.length).split(/ +/);
   if (!args[0]) return;
   const command = args.shift().toLowerCase();
-  // console.log("\r\nCommand captured:", command);
-  // console.log("Arguments:", args);
-
   switch (command) {
     case "ping":
       bot.commands.get("ping").execute(msg, args);
       break;
     case "welcome":
+      if (!msg.member.permissions.has("ADMINISTRATOR")) {
+        msg.reply("Admin perms required");
+        return;
+      }
       bot.commands.get("welcome").execute(msg, args);
+      break;
   }
 });
 

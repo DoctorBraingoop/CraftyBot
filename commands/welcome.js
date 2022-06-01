@@ -1,29 +1,34 @@
 const { bot } = require("../app.js");
-const channelID = "972328591704596520";
-// const { MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
+const channelID = "964967586813059132";
+let embedEnabled = false;
 
-let embedEnabled = true;
-
-const embed = {
-  color: embedEnabled ? 0x00ff99 : 0xff3333,
-  description: embedEnabled
+function welcome() {
+  embedEnabled = !embedEnabled;
+  const color = embedEnabled ? 0x00ff99 : 0xff3333;
+  const description = embedEnabled
     ? ":white_check_mark: Greeting Messages enabled."
-    : ":x: Greeting Messages disabled.",
-};
+    : ":x: Greeting Messages disabled.";
 
+  const embed = new MessageEmbed().setColor(color).setDescription(description);
+  return embed;
+}
 module.exports = {
   name: "welcome",
   description: "Welcome embed",
   execute(msg, args) {
-    msg.channel.send({ embeds: [embed] });
+    args = args.join(" ");
+    if (args == "") msg.channel.send({ embeds: [welcome()] });
+
+
+    if (embedEnabled) {
+      // bot.on("guildMemberAdd", async (member) => {
+      //   const channel = bot.channels.cache.get(channelID);
+      //   if (!channel) return;
+      //   const embed = new MessageEmbed().setTitle(`Member Joined`);
+      //   channel.send({ embeds: [embed] });
+      // });
+      
+    }
   },
 };
-
-// const test = (msg) => {
-//   const channel = bot.channels.cache.get(channelID);
-//   if (!channel) return;
-//   const embed = new MessageEmbed()
-//     .setTitle(`Member Joined`)
-//     .setDescription("Some description here");
-//   msg.channel.send({ embeds: [embed] });
-// };
